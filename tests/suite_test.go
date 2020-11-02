@@ -27,21 +27,21 @@ var _ = SynchronizedBeforeSuite(
 		if _, err := os.Stat("/opt/resource/in"); err == nil {
 			b.In = "/opt/resource/in"
 		} else {
-			b.In, err = gexec.Build("github.com/samcontesse/gitlab-merge-request-resource/in/cmd")
+			b.In, err = gexec.Build("github.com/suwa-sh/gitlab-merge-request-resource/in/cmd")
 			Expect(err).ToNot(HaveOccurred())
 		}
 
 		if _, err := os.Stat("/opt/resource/out"); err == nil {
 			b.Out = "/opt/resource/out"
 		} else {
-			b.Out, err = gexec.Build("github.com/samcontesse/gitlab-merge-request-resource/out/cmd")
+			b.Out, err = gexec.Build("github.com/suwa-sh/gitlab-merge-request-resource/out/cmd")
 			Expect(err).ToNot(HaveOccurred())
 		}
 
 		if _, err := os.Stat("/opt/resource/check"); err == nil {
 			b.Check = "/opt/resource/check"
 		} else {
-			b.Check, err = gexec.Build("github.com/samcontesse/gitlab-merge-request-resource/check/cmd")
+			b.Check, err = gexec.Build("github.com/suwa-sh/gitlab-merge-request-resource/check/cmd")
 			Expect(err).ToNot(HaveOccurred())
 		}
 

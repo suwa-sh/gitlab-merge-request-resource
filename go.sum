@@ -28,6 +28,8 @@ github.com/onsi/gomega v1.7.1/go.mod h1:XdKZgCCFLUoM/7CFJVPcG8C1xQ1AJ0vpAezJrB7J
 github.com/onsi/gomega v1.9.0 h1:R1uwffexN6Pr340GtYRIdZmAiN4J+iw6WG4wog1DUXg=
 github.com/onsi/gomega v1.9.0/go.mod h1:Ho0h+IUsWyvy1OpqCwxlQ/21gkhVunqlU8fDGcoTdcA=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
+github.com/suwa-sh/gitlab-merge-request-resource v0.1.0 h1:/w1wvXvHHeW1GFpbxeVB1H+raUjljvgF8vCvhOYNc7Y=
+github.com/suwa-sh/gitlab-merge-request-resource v0.1.0/go.mod h1:GBQpiXE5b/wp99W9hVtMeOmr6exTaOCZ3ptL2BXxFuo=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
 github.com/xanzy/go-gitlab v0.8.1 h1:3SxEQFlhFY4ueKFcYC9h2CmWoLgyhBo9VqqCEXMXidM=

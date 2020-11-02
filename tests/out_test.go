@@ -11,8 +11,8 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/samcontesse/gitlab-merge-request-resource"
-	"github.com/samcontesse/gitlab-merge-request-resource/out"
+	"github.com/suwa-sh/gitlab-merge-request-resource"
+	"github.com/suwa-sh/gitlab-merge-request-resource/out"
 	"github.com/xanzy/go-gitlab"
 	"log"
 	"net/url"

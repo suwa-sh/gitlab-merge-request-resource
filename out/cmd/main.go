@@ -3,9 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/samcontesse/gitlab-merge-request-resource"
-	"github.com/samcontesse/gitlab-merge-request-resource/common"
-	"github.com/samcontesse/gitlab-merge-request-resource/out"
+	"github.com/suwa-sh/gitlab-merge-request-resource"
+	"github.com/suwa-sh/gitlab-merge-request-resource/common"
+	"github.com/suwa-sh/gitlab-merge-request-resource/out"
 	"github.com/xanzy/go-gitlab"
 	"io/ioutil"
 	"log"
