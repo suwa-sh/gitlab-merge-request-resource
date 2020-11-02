@@ -9,6 +9,8 @@ import (
 	"os"
 	"strings"
 	"time"
+	"regexp"
+	"fmt"
 )
 
 func main() {
@@ -40,6 +42,9 @@ func main() {
 	var versions []resource.Version
 	versions = make([]resource.Version, 0)
 
+	paths := fmt.Sprintf(`^(%v)\/.*`, strings.Join(request.Source.Paths, "|"))
+	ignorePaths := fmt.Sprintf(`^(%v)\/.*`, strings.Join(request.Source.IgnorePaths, "|"))
+
 	for _, mr := range requests {
 
 		commit, _, err := api.Commits.GetCommit(mr.ProjectID, mr.SHA)
@@ -70,6 +75,14 @@ func main() {
 			continue
 		}
 
+		if len(request.Source.Paths) > 0 && !checkIncludePaths(api, paths, mr.ProjectID, mr.IID) {
+			continue
+		}
+
+		if len(request.Source.IgnorePaths) > 0 && checkIncludePaths(api, ignorePaths, mr.ProjectID, mr.IID) {
+			continue
+		}
+
 		target := request.Source.GetTargetURL()
 		name := request.Source.GetPipelineName()
 
@@ -86,7 +99,29 @@ func main() {
 	}
 
 	json.NewEncoder(os.Stdout).Encode(versions)
+}
 
+
+func checkIncludePaths(api *gitlab.Client, paths string, projectid int, mriid int) bool {
+	versions, _, err := api.MergeRequests.GetMergeRequestDiffVersions(projectid, mriid, nil)
+	if err != nil {
+		common.Fatal("retrieving merge request diff versions", err)
+	}
+
+	diff, _, err := api.MergeRequests.GetSingleMergeRequestDiffVersion(projectid, mriid, versions[0].ID)
+	if err != nil {
+		common.Fatal("retrieving merge request diff", err)
+	}
+
+	for _, d := range diff.Diffs {
+		if match, _ := regexp.MatchString(paths, d.OldPath); match {
+			return true
+		}
+		if match, _ := regexp.MatchString(paths, d.NewPath); match {
+			return true
+		}
+	}
+	return false
 }
 
 func getMostRecentUpdateTime(notes []*gitlab.Note, updatedAt *time.Time) *time.Time {

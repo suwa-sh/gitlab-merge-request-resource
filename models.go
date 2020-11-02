@@ -18,6 +18,8 @@ type Source struct {
 	PipelineName       string   `json:"pipeline_name,omitempty"`
 	Labels             []string `json:"labels,omitempty"`
 	TargetBranch       string   `json:"target_branch,omitempty"`
+	Paths			   []string	`json:"paths,omitempty"`
+	IgnorePaths		   []string	`json:"ignore_paths,omitempty"`
 }
 
 type Version struct {
