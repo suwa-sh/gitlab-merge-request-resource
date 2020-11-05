@@ -42,8 +42,8 @@ func main() {
 	var versions []resource.Version
 	versions = make([]resource.Version, 0)
 
-	paths := fmt.Sprintf(`^(%v)\/.*`, strings.Join(request.Source.Paths, "|"))
-	ignorePaths := fmt.Sprintf(`^(%v)\/.*`, strings.Join(request.Source.IgnorePaths, "|"))
+	paths := fmt.Sprintf(`^(%v).*`, strings.Join(request.Source.Paths, "|"))
+	ignorePaths := fmt.Sprintf(`^(%v).*`, strings.Join(request.Source.IgnorePaths, "|"))
 
 	for _, mr := range requests {
 
@@ -75,11 +75,11 @@ func main() {
 			continue
 		}
 
-		if len(request.Source.Paths) > 0 && !checkIncludePaths(api, paths, mr.ProjectID, mr.IID) {
+		if len(request.Source.Paths) > 0 && !isIncludePaths(api, paths, mr.ProjectID, mr.IID) {
 			continue
 		}
 
-		if len(request.Source.IgnorePaths) > 0 && checkIncludePaths(api, ignorePaths, mr.ProjectID, mr.IID) {
+		if len(request.Source.IgnorePaths) > 0 && isIncludePaths(api, ignorePaths, mr.ProjectID, mr.IID) {
 			continue
 		}
 
@@ -102,7 +102,7 @@ func main() {
 }
 
 
-func checkIncludePaths(api *gitlab.Client, paths string, projectid int, mriid int) bool {
+func isIncludePaths(api *gitlab.Client, paths string, projectid int, mriid int) bool {
 	versions, _, err := api.MergeRequests.GetMergeRequestDiffVersions(projectid, mriid, nil)
 	if err != nil {
 		common.Fatal("retrieving merge request diff versions", err)

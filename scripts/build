@@ -5,7 +5,8 @@ set -e -u -x
 mkdir -p assets
 
 export GOARCH=amd64
-export GOOS=linux
+#export GOOS=linux
+export GOOS=darwin
 
 go build -o assets/check check/cmd/main.go
 go build -o assets/in in/cmd/main.go
